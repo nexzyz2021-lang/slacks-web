@@ -14,28 +14,28 @@ function UsusCrispy() {
   );
   return (
     <svg viewBox="0 0 340 400" className="h-full w-full drop-shadow-[0_24px_28px_rgba(94,13,13,.3)]" role="img" aria-label="Kemasan pouch ziplock Slack's usus crispy">
-      <defs><clipPath id="win"><rect x="84" y="112" width="172" height="120" rx="20" /></clipPath></defs>
+      <defs><clipPath id="win"><rect x="84" y="192" width="172" height="120" rx="20" /></clipPath><clipPath id="lbl"><rect x="85" y="112" width="170" height="72" rx="12" /></clipPath></defs>
       {/* badan pouch */}
-      <path d="M70 40h200l14 332q0 14-14 14H70q-14 0-14-14z" fill="#FFF9F3" stroke="#E2CDC1" strokeWidth="3" />
-      <path d="M56 372q114 22 228 0" fill="none" stroke="#E2CDC1" strokeWidth="3" />
-      <path d="M72 44h22l-8 336H64z" fill="#fff" opacity=".55" />
+      <path d="M70 40h200l14 332q0 14-14 14H70q-14 0-14-14z" fill="#D6B382" stroke="#A98154" strokeWidth="3" />
+      <path d="M56 372q114 22 228 0" fill="none" stroke="#A98154" strokeWidth="3" />
+      <path d="M72 44h22l-8 336H64z" fill="#fff" opacity=".18" />
       {/* seal atas bergerigi */}
-      <rect x="70" y="40" width="200" height="24" fill="#F1E1D6" />
-      {Array.from({ length: 25 }, (_, i) => <path key={i} d={`M${76 + i * 8} 44v16`} stroke="#DCC4B6" strokeWidth="2" />)}
+      <rect x="70" y="40" width="200" height="24" fill="#C79F6A" />
+      {Array.from({ length: 25 }, (_, i) => <path key={i} d={`M${76 + i * 8} 44v16`} stroke="#A98154" strokeWidth="2" />)}
       {/* sobekan */}
-      <path d="M69 74l9 4-9 4zM271 74l-9 4 9 4z" fill="#E2CDC1" />
+      <path d="M69 74l9 4-9 4zM271 74l-9 4 9 4z" fill="#A98154" />
       {/* ziplock */}
-      <rect x="64" y="90" width="212" height="12" rx="6" fill="#EBDCD2" stroke="#D6BFB2" strokeWidth="1.5" />
-      <path d="M72 96h196" stroke="#C9AE9F" strokeWidth="2" strokeLinecap="round" />
+      <rect x="64" y="90" width="212" height="12" rx="6" fill="#C9A673" stroke="#A98154" strokeWidth="1.5" />
+      <path d="M72 96h196" stroke="#8F6B3F" strokeWidth="2" strokeLinecap="round" />
       {/* jendela isi usus crispy */}
-      <rect x="84" y="112" width="172" height="120" rx="20" fill="#FFF0D6" stroke="#E2CDC1" strokeWidth="2" />
+      <rect x="84" y="192" width="172" height="120" rx="20" fill="#FFF0D6" stroke="#A98154" strokeWidth="2" />
       <g clipPath="url(#win)">
-        <g transform="translate(70 99) scale(.62)">{bits.map(tone)}</g>
-        <g transform="translate(58 128) scale(.6)">{[bits[3], bits[1], bits[5]].map(tone)}</g>
-        <path d="M90 118l50-6-30 120H90z" fill="#fff" opacity=".35" />
+        <g transform="translate(70 179) scale(.62)">{bits.map(tone)}</g>
+        <g transform="translate(58 208) scale(.6)">{[bits[3], bits[1], bits[5]].map(tone)}</g>
+        <path d="M90 198l50-6-30 120H90z" fill="#fff" opacity=".35" />
       </g>
       {/* logo Slack's */}
-      <image href="/logo.png" x="76" y="248" width="188" height="65" />
+      <image href="/logo-white.png" x="85" y="112" width="170" height="72" preserveAspectRatio="none" clipPath="url(#lbl)" />
       {/* beberapa usus di depan pouch */}
       <g transform="translate(6 322) scale(.5)">{[bits[0], bits[3]].map(tone)}</g>
     </svg>
@@ -46,15 +46,15 @@ export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 pb-20 pt-10 md:px-8 lg:min-h-[640px] lg:grid-cols-2 lg:gap-6 lg:pt-6">
-        <div className="relative pt-14 lg:pt-10">
-          <div className="absolute -left-1 top-0 grid h-[78px] w-[78px] -rotate-12 animate-pop place-items-center rounded-full bg-gold p-2 text-center font-display text-[12px] font-semibold leading-tight text-ink lg:-left-9">
+        <div className="relative pt-2 lg:pt-6">
+          <div className="mb-6 grid h-[84px] w-[84px] -rotate-12 animate-pop place-items-center rounded-full bg-gold p-2 text-center font-display text-[12px] font-semibold leading-tight text-ink lg:-left-9">
             Pre-<br/>Order<br/>Dibuka
           </div>
           <h1 className="animate-rise font-display text-[44px] font-bold leading-[1.1] text-ink sm:text-6xl lg:text-[64px]">
             Usus Crispy, <span className="text-brand">Renyah Banget</span> dan Gurih
           </h1>
           <p className="mt-7 max-w-[430px] animate-rise text-lg leading-relaxed text-ink/80 [animation-delay:.12s]">
-            Gurih, bumbunya meresap, renyah sampai gigitan terakhir. Pesan lewat pre-order, tinggal pilih rasa favoritmu.
+            Gurih, bumbunya meresap, renyah sampai gigitan terakhir. Pre-order sekarang dan pilih rasa favoritmu!
           </p>
           <div className="mt-8 flex animate-rise flex-wrap gap-4 [animation-delay:.24s]">
             <a href="#menu" className="btn btn-primary px-8 py-3.5 text-lg">Pre-Order Sekarang</a>
