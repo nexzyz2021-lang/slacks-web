@@ -81,7 +81,7 @@ export function Locations() {
         <div className="rounded-[28px] bg-cream p-8 shadow-[0_8px_30px_rgba(139,21,21,.08)]">
           <h3 className="font-display text-2xl font-semibold">Telkom University Surabaya</h3>
           <p className="mt-2 text-ink/75">Jl. Ketintang No.156, Gayungan, Surabaya, Jawa Timur 60231</p>
-          <p className="mt-6 font-semibold">Pesanan bisa diambil di lokasi atau diantar. Detailnya dikonfirmasi lewat WhatsApp.</p>
+          <p className="mt-6 font-semibold">Pesanan bisa diambil di lokasi atau diantar. Gratis ongkir untuk area Ketintang, di luar itu dikenakan biaya tambahan.</p>
           <a href="https://www.google.com/maps/search/?api=1&query=Telkom+University+Surabaya" target="_blank" rel="noreferrer" className="btn btn-outline mt-6 px-6 py-2.5">Buka di Maps</a>
         </div>
         <iframe title="Peta Telkom University Surabaya" src="https://www.google.com/maps?q=Telkom+University+Surabaya,+Jl.+Ketintang+No.156&output=embed" loading="lazy" className="h-72 w-full rounded-[28px] border-0 bg-blush/50 md:h-full md:min-h-[280px]" />

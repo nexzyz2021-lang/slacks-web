@@ -29,8 +29,8 @@ export function buildOrderLink(items, f) {
     ...lines, '',
     `Total: ${pcs} bungkus = ${rupiah(total)}`, '',
     `Nama: ${f.name}`,
-    `Metode: ${f.method}`,
-    f.note ? `Catatan: ${f.note}` : null, '',
+    `Metode: ${f.method === 'Diantar' ? (f.area === 'Ketintang' ? 'Diantar (Area Ketintang, gratis ongkir)' : 'Diantar (Luar Ketintang, ada biaya tambahan ongkir)') : f.method}`,
+    f.note ? `${f.method === 'Diantar' ? 'Alamat' : 'Catatan'}: ${f.note}` : null, '',
     'Mohon konfirmasi pesanan saya. Terima kasih!',
   ].filter((x) => x !== null).join('\n');
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
