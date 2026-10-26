@@ -23,7 +23,8 @@ export default function CartProvider({ children }) {
   const [ready, setReady] = useState(false);
   const [toast, setToast] = useState('');
   const [err, setErr] = useState(false);
-  const [form, setForm] = useState({ name: '', method: 'Ambil di lokasi', note: '' });
+  const [errAddr, setErrAddr] = useState(false);
+  const [form, setForm] = useState({ name: '', method: 'Ambil di lokasi', area: 'Ketintang', note: '' });
 
   useEffect(() => {
     try { const s = localStorage.getItem('slacks-cart'); if (s) setQ(JSON.parse(s)); } catch (e) {}
@@ -49,7 +50,8 @@ export default function CartProvider({ children }) {
 
   const checkout = () => {
     if (!form.name.trim()) { setErr(true); return; }
-    setErr(false);
+    if (form.method === 'Diantar' && !form.note.trim()) { setErr(false); setErrAddr(true); return; }
+    setErr(false); setErrAddr(false);
     window.open(buildOrderLink(items, { ...form, name: form.name.trim(), note: form.note.trim() }), '_blank', 'noopener');
   };
   const inp = 'w-full rounded-xl border-2 border-blush bg-white px-4 py-2.5 outline-none transition focus:border-brand';
@@ -106,11 +108,25 @@ export default function CartProvider({ children }) {
                     <button key={m} onClick={() => setForm({ ...form, method: m })} className={`rounded-xl border-2 px-3 py-2 text-sm font-semibold transition ${form.method === m ? 'border-brand bg-brand text-white' : 'border-blush bg-white text-ink'}`}>{m}</button>
                   ))}
                 </div>
-                <textarea value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} rows={2} placeholder="Catatan (alamat pengantaran, jam ambil, dll)" className={inp} />
+                {form.method === 'Diantar' && (
+                  <div className="space-y-2 rounded-xl bg-blush/40 p-3 text-sm">
+                    <div className="grid grid-cols-2 gap-2">
+                      {[['Ketintang', 'Area Ketintang'], ['Luar', 'Luar Ketintang']].map(([v, l]) => (
+                        <button key={v} onClick={() => setForm({ ...form, area: v })} className={`rounded-lg border-2 px-2 py-1.5 font-semibold transition ${form.area === v ? 'border-brand bg-white text-brand' : 'border-transparent bg-white/60 text-ink'}`}>{l}</button>
+                      ))}
+                    </div>
+                    <p className="text-ink/80">{form.area === 'Ketintang' ? '✓ Gratis ongkir untuk area Ketintang.' : 'Di luar Ketintang dikenakan biaya tambahan. Besarnya dikonfirmasi lewat WhatsApp.'}</p>
+                  </div>
+                )}
+                <div>
+                  <textarea value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} rows={2} placeholder={form.method === 'Diantar' ? 'Alamat pengantaran lengkap *' : 'Catatan (jam ambil, dll)'} className={`${inp} ${errAddr ? '!border-red-500' : ''}`} />
+                  {errAddr && <p className="mt-1 text-sm text-red-600">Isi alamat pengantaran dulu ya.</p>}
+                </div>
                 <div className="flex items-baseline justify-between">
                   <span className="text-ink/70">Total ({count} bungkus)</span>
                   <span className="font-display text-2xl font-bold text-brand">{rupiah(total)}</span>
                 </div>
+                {form.method === 'Diantar' && form.area === 'Luar' && <p className="text-xs text-ink/60">Total belum termasuk ongkir.</p>}
                 <button onClick={checkout} className="btn btn-primary w-full gap-2 py-3.5 text-lg"><WhatsAppIcon className="h-6 w-6" />Pesan via WhatsApp</button>
                 <button onClick={() => setQ({})} className="block w-full text-center text-sm text-ink/60 underline-offset-2 hover:text-brand hover:underline">Kosongkan keranjang</button>
               </div>
