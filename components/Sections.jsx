@@ -96,7 +96,9 @@ export function Contact() {
       <div className="mx-auto max-w-2xl rounded-[36px] bg-white p-8 text-center shadow-[0_8px_30px_rgba(139,21,21,.08)] md:p-12">
         <H2>Hubungi Kami</H2>
         <p className="mt-3 text-lg text-ink/75">Mau pre-order atau ada pertanyaan? Chat kami langsung.</p>
-        <p className="mt-6 flex items-center justify-center gap-3 font-display text-3xl font-semibold text-brand"><WhatsAppIcon className="h-9 w-9 text-[#25D366]" />{PHONE}</p>
+        <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-ink/60">Contact Person</p>
+        <p className="font-display text-2xl font-semibold text-ink">Andi</p>
+        <p className="mt-2 flex items-center justify-center gap-3 font-display text-3xl font-semibold text-brand"><WhatsAppIcon className="h-9 w-9 text-[#25D366]" />{PHONE}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <a href={WA} target="_blank" rel="noreferrer" className="btn btn-primary gap-2 px-8 py-3.5 text-lg"><WhatsAppIcon className="h-6 w-6" />Chat WhatsApp</a>
         </div>
