@@ -8,13 +8,13 @@ export const WA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo Sl
 
 // Varian & harga (rupiah)
 export const products = [
-  { id: 'original', n: 'Original', d: 'Gurih klasik, renyah, cocok untuk semua kalangan.', p: 7000 },
-  { id: 'pedas', n: 'Pedas', d: 'Gurih dengan sensasi pedas yang nendang.', p: 7500 },
-  { id: 'balado', n: 'Balado', d: 'Bumbu balado pedas manis yang meresap.', p: 7500 },
-  { id: 'nori', n: 'Nori', d: 'Gurih rumput laut ala camilan Jepang.', p: 7500 },
-  { id: 'kari', n: 'Kari Ayam Pedas', d: 'Aroma kari yang kuat dengan rasa pedas.', p: 7500 },
-  { id: 'bawang', n: 'Ayam Bawang', d: 'Perpaduan gurih ayam dan harum bawang.', p: 7500 },
-  { id: 'bbq', n: 'Barbeque', d: 'Bumbu barbeque gurih manis yang khas.', p: 7500 },
+  { id: 'original', img: '/foto-maroon.jpg', pos: 'center 40%', n: 'Original', d: 'Gurih klasik, renyah, cocok untuk semua kalangan.', p: 7000 },
+  { id: 'pedas', img: '/foto-putih.jpg', pos: 'center 40%', n: 'Pedas', d: 'Gurih dengan sensasi pedas yang nendang.', p: 7500 },
+  { id: 'balado', img: '/foto-maroon.jpg', pos: 'center 40%', n: 'Balado', d: 'Bumbu balado pedas manis yang meresap.', p: 7500 },
+  { id: 'nori', img: '/foto-putih.jpg', pos: 'center 40%', n: 'Nori', d: 'Gurih rumput laut ala camilan Jepang.', p: 7500 },
+  { id: 'kari', img: '/foto-maroon.jpg', pos: 'center 40%', n: 'Kari Ayam Pedas', d: 'Aroma kari yang kuat dengan rasa pedas.', p: 7500 },
+  { id: 'bawang', img: '/foto-putih.jpg', pos: 'center 40%', n: 'Ayam Bawang', d: 'Perpaduan gurih ayam dan harum bawang.', p: 7500 },
+  { id: 'bbq', img: '/foto-maroon.jpg', pos: 'center 40%', n: 'Barbeque', d: 'Bumbu barbeque gurih manis yang khas.', p: 7500 },
 ];
 export const tones = ['bg-gold/70', 'bg-blush', 'bg-brand/15'];
 export const rupiah = (n) => 'Rp ' + n.toLocaleString('id-ID');
