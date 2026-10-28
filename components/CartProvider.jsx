@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { products, tones, rupiah, buildOrderLink } from './data';
+import { products, rupiah, buildOrderLink } from './data';
 import { WhatsAppIcon } from './Icons';
 
 const Ctx = createContext(null);
@@ -82,10 +82,10 @@ export default function CartProvider({ children }) {
               <ul className="flex-1 space-y-3 overflow-y-auto px-5 py-4">
                 {items.map((it) => (
                   <li key={it.id} className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-[0_4px_16px_rgba(139,21,21,.07)]">
-                    <div className={`grid h-16 w-16 shrink-0 place-items-center rounded-xl ${tones[it.i % 3]}`}><img src="/logo.png" alt="" className="w-12" /></div>
+                    <img src={it.img} alt="" style={{ objectPosition: it.pos }} className="h-16 w-16 shrink-0 rounded-xl object-cover" />
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-display font-semibold">{it.n}</p>
-                      <p className="text-sm text-ink/70">{rupiah(it.p)} · 50 gram</p>
+                      <p className="text-sm text-ink/70">{rupiah(it.p)}</p>
                       <div className="mt-1.5 flex items-center justify-between">
                         <Stepper q={it.q} small onChange={(q) => setQty(it.id, q)} />
                         <span className="font-display font-semibold text-brand">{rupiah(it.p * it.q)}</span>
