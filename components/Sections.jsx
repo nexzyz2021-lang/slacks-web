@@ -13,7 +13,7 @@ export function Menu() {
   return (
     <Wrap id="menu">
       <H2>Menu Slack's</H2>
-      <p className="mt-3 max-w-lg text-lg text-ink/75">Tersedia 7 varian rasa, masing-masing 50 gram per kemasan. Masukkan ke keranjang, lalu kirim pesanan otomatis lewat WhatsApp.</p>
+      <p className="mt-3 max-w-lg text-lg text-ink/75">Tersedia 7 varian rasa. Masukkan ke keranjang, lalu kirim pesanan otomatis lewat WhatsApp.</p>
       <ProductGrid />
     </Wrap>
   );
@@ -49,8 +49,10 @@ export function About() {
   return (
     <Wrap id="about">
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="grid aspect-[4/3] place-items-center rounded-[36px] bg-blush/60 p-10">
-          <img src="/logo.png" alt="Logo Slack's" className="w-full max-w-sm" />
+        <div className="mx-auto w-full max-w-md lg:max-w-none">
+          <div className="overflow-hidden rounded-[36px] bg-blush shadow-[0_20px_50px_rgba(139,21,21,.2)]">
+            <img src="/foto-tray.jpg" alt="Stok pouch Slack's usus crispy siap dipesan" className="aspect-[5/4] w-full object-cover transition duration-500 hover:scale-105" />
+          </div>
         </div>
         <div>
           <H2>Tentang Slack's</H2>
