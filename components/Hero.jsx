@@ -4,40 +4,29 @@ function UsusCrispy() {
     'M70 150c20-40 50 10 70-25s45-20 40 10', 'M200 120c25-30 45 15 65-12', 'M60 100c15-25 35 5 50-15s30-8 28 12',
     'M120 70c20-30 40 10 60-15s35 0 30 20', 'M150 120c15-35 40 0 55-30', 'M90 130c25-20 35 20 60 0',
   ];
-  const tone = (d, i) => (
-    <g key={i} strokeLinecap="round" fill="none">
+  const tone = (d, k) => (
+    <g key={k} strokeLinecap="round" fill="none">
       <path d={d} stroke="#C27A1E" strokeWidth="19" />
       <path d={d} stroke="#E8A93A" strokeWidth="14" />
       <path d={d} stroke="#F6D17A" strokeWidth="4" transform="translate(-2 -3)" />
       <path d={d} stroke="#A8620F" strokeWidth="3" strokeDasharray="1 9" />
     </g>
   );
+  // tumpukan usus crispy menggunung di mangkuk: [transformasi, indeks potongan]
+  const layers = [['translate(-8 20) scale(1.1)', [2, 3, 4]], ['translate(20 52) scale(1)', [0, 1, 5]], ['translate(-14 82) scale(1.1)', [3, 0, 2]]];
+  // remah dan bumbu aneka rasa (balado, nori, kari, pedas)
+  const dots = [[52, 160, 5, '#D8452B'], [290, 150, 4, '#5FA05A'], [36, 112, 3.5, '#E8873A'], [306, 104, 5, '#F1C84B'], [252, 58, 4, '#D8452B'], [92, 52, 3.5, '#5FA05A'], [220, 40, 3, '#E8873A'], [132, 34, 4, '#F1C84B']];
   return (
-    <svg viewBox="0 0 340 400" className="h-full w-full drop-shadow-[0_24px_28px_rgba(94,13,13,.3)]" role="img" aria-label="Kemasan pouch ziplock Slack's usus crispy">
-      <defs><clipPath id="win"><rect x="84" y="192" width="172" height="120" rx="20" /></clipPath><clipPath id="lbl"><rect x="85" y="112" width="170" height="72" rx="12" /></clipPath></defs>
-      {/* badan pouch */}
-      <path d="M70 40h200l14 332q0 14-14 14H70q-14 0-14-14z" fill="#D6B382" stroke="#A98154" strokeWidth="3" />
-      <path d="M56 372q114 22 228 0" fill="none" stroke="#A98154" strokeWidth="3" />
-      <path d="M72 44h22l-8 336H64z" fill="#fff" opacity=".18" />
-      {/* seal atas bergerigi */}
-      <rect x="70" y="40" width="200" height="24" fill="#C79F6A" />
-      {Array.from({ length: 25 }, (_, i) => <path key={i} d={`M${76 + i * 8} 44v16`} stroke="#A98154" strokeWidth="2" />)}
-      {/* sobekan */}
-      <path d="M69 74l9 4-9 4zM271 74l-9 4 9 4z" fill="#A98154" />
-      {/* ziplock */}
-      <rect x="64" y="90" width="212" height="12" rx="6" fill="#C9A673" stroke="#A98154" strokeWidth="1.5" />
-      <path d="M72 96h196" stroke="#8F6B3F" strokeWidth="2" strokeLinecap="round" />
-      {/* jendela isi usus crispy */}
-      <rect x="84" y="192" width="172" height="120" rx="20" fill="#FFF0D6" stroke="#A98154" strokeWidth="2" />
-      <g clipPath="url(#win)">
-        <g transform="translate(70 179) scale(.62)">{bits.map(tone)}</g>
-        <g transform="translate(58 208) scale(.6)">{[bits[3], bits[1], bits[5]].map(tone)}</g>
-        <path d="M90 198l50-6-30 120H90z" fill="#fff" opacity=".35" />
-      </g>
-      {/* logo Slack's */}
-      <image href="/logo-white.png" x="85" y="112" width="170" height="72" preserveAspectRatio="none" clipPath="url(#lbl)" />
-      {/* beberapa usus di depan pouch */}
-      <g transform="translate(6 322) scale(.5)">{[bits[0], bits[3]].map(tone)}</g>
+    <svg viewBox="0 0 340 340" className="h-full w-full drop-shadow-[0_24px_28px_rgba(94,13,13,.25)]" role="img" aria-label="Semangkuk usus crispy Slack's">
+      <ellipse cx="170" cy="322" rx="125" ry="12" fill="#5E0D0D" opacity=".18" />
+      {layers.map(([t, idx], i) => <g key={i} transform={t}>{idx.map((b, j) => tone(bits[b], `${i}-${j}`))}</g>)}
+      {dots.map(([x, y, r, c], i) => <circle key={i} cx={x} cy={y} r={r} fill={c} />)}
+      {/* mangkuk maroon bertuliskan logo */}
+      <path d="M40 190h260c0 70-45 120-130 120S40 260 40 190z" fill="#8C1515" />
+      <path d="M58 208c4 30 20 52 44 66" fill="none" stroke="#fff" strokeOpacity=".2" strokeWidth="6" strokeLinecap="round" />
+      <image href="/logo-white.png" x="95" y="212" width="150" height="64" preserveAspectRatio="none" />
+      <rect x="32" y="180" width="276" height="18" rx="9" fill="#A82020" />
+      <path d="M46 186h248" stroke="#fff" strokeOpacity=".28" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
