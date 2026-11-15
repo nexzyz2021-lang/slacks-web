@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { products, rupiah, buildOrderLink } from './data';
+import { products, rupiah, buildOrderLink, MIN_QTY } from './data';
 import { WhatsAppIcon } from './Icons';
 
 const Ctx = createContext(null);
@@ -24,7 +24,7 @@ export default function CartProvider({ children }) {
   const [toast, setToast] = useState('');
   const [err, setErr] = useState(false);
   const [errAddr, setErrAddr] = useState(false);
-  const [form, setForm] = useState({ name: '', method: 'Ambil di lokasi', area: 'Ketintang', note: '' });
+  const [form, setForm] = useState({ name: '', method: 'Ambil di lokasi', area: 'dekat', note: '' });
 
   useEffect(() => {
     try { const s = localStorage.getItem('slacks-cart'); if (s) setQ(JSON.parse(s)); } catch (e) {}
@@ -47,8 +47,11 @@ export default function CartProvider({ children }) {
   const items = products.map((p, i) => ({ ...p, i, q: qty[p.id] || 0 })).filter((p) => p.q > 0);
   const count = items.reduce((s, i) => s + i.q, 0);
   const total = items.reduce((s, i) => s + i.p * i.q, 0);
+  // minimal pembelian hanya berlaku untuk pengantaran lebih dari 2 km
+  const minNeeded = form.method === 'Diantar' && form.area === 'jauh' ? MIN_QTY : 0;
 
   const checkout = () => {
+    if (count < minNeeded) return;
     if (!form.name.trim()) { setErr(true); return; }
     if (form.method === 'Diantar' && !form.note.trim()) { setErr(false); setErrAddr(true); return; }
     setErr(false); setErrAddr(false);
@@ -111,11 +114,11 @@ export default function CartProvider({ children }) {
                 {form.method === 'Diantar' && (
                   <div className="space-y-2 rounded-xl bg-blush/40 p-3 text-sm">
                     <div className="grid grid-cols-2 gap-2">
-                      {[['Ketintang', 'Area Ketintang'], ['Luar', 'Luar Ketintang']].map(([v, l]) => (
+                      {[['dekat', 'Dalam 2 km'], ['jauh', 'Lebih dari 2 km']].map(([v, l]) => (
                         <button key={v} onClick={() => setForm({ ...form, area: v })} className={`rounded-lg border-2 px-2 py-1.5 font-semibold transition ${form.area === v ? 'border-brand bg-white text-brand' : 'border-transparent bg-white/60 text-ink'}`}>{l}</button>
                       ))}
                     </div>
-                    <p className="text-ink/80">{form.area === 'Ketintang' ? '✓ Gratis ongkir untuk area Ketintang.' : 'Di luar Ketintang dikenakan biaya tambahan. Besarnya dikonfirmasi lewat WhatsApp.'}</p>
+                    <p className="text-ink/80">{form.area === 'dekat' ? '✓ Gratis ongkir untuk pengantaran dalam radius 2 km.' : 'Lebih dari 2 km dikenakan ongkir tambahan. Besarnya dikonfirmasi lewat WhatsApp.'}</p>
                   </div>
                 )}
                 <div>
@@ -123,11 +126,12 @@ export default function CartProvider({ children }) {
                   {errAddr && <p className="mt-1 text-sm text-red-600">Isi alamat pengantaran dulu ya.</p>}
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-ink/70">Total ({count} bungkus)</span>
+                  <span className="text-ink/70">Total ({count} pcs)</span>
                   <span className="font-display text-2xl font-bold text-brand">{rupiah(total)}</span>
                 </div>
-                {form.method === 'Diantar' && form.area === 'Luar' && <p className="text-xs text-ink/60">Total belum termasuk ongkir.</p>}
-                <button onClick={checkout} className="btn btn-primary w-full gap-2 py-3.5 text-lg"><WhatsAppIcon className="h-6 w-6" />Pesan via WhatsApp</button>
+                {form.method === 'Diantar' && form.area === 'jauh' && <p className="text-xs text-ink/60">Total belum termasuk ongkir.</p>}
+                {count < minNeeded && <p className="rounded-xl bg-gold/40 px-3 py-2 text-sm font-semibold text-ink">Pengantaran lebih dari 2 km minimal pembelian {MIN_QTY} pcs (rasa boleh dicampur). Tambah {minNeeded - count} pcs lagi.</p>}
+                <button onClick={checkout} disabled={count < minNeeded} className="btn btn-primary w-full gap-2 py-3.5 text-lg disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:hover:translate-y-0"><WhatsAppIcon className="h-6 w-6" />Pesan via WhatsApp</button>
                 <button onClick={() => setQ({})} className="block w-full text-center text-sm text-ink/60 underline-offset-2 hover:text-brand hover:underline">Kosongkan keranjang</button>
               </div>
             </>
