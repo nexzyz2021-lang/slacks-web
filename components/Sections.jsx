@@ -13,7 +13,7 @@ export function Menu() {
   return (
     <Wrap id="menu">
       <H2>Menu Slack's</H2>
-      <p className="mt-3 max-w-lg text-lg text-ink/75">Tersedia 7 varian rasa. Masukkan ke keranjang, lalu kirim pesanan otomatis lewat WhatsApp.</p>
+      <p className="mt-3 max-w-lg text-lg text-ink/75">Tersedia 7 varian rasa. Pengantaran lebih dari 2 km minimal pembelian 7 pcs (rasa boleh dicampur). Masukkan ke keranjang, lalu kirim pesanan otomatis lewat WhatsApp.</p>
       <ProductGrid />
     </Wrap>
   );
@@ -21,7 +21,7 @@ export function Menu() {
 
 export function CaraPesan() {
   const steps = [
-    ['Pilih varian', 'Tambahkan rasa dan jumlah bungkus yang diinginkan ke keranjang.'],
+    ['Pilih varian', 'Tambahkan rasa dan jumlah yang diinginkan ke keranjang.'],
     ['Checkout', 'Isi nama, pilih ambil atau diantar, lalu tekan Pesan via WhatsApp. Daftar pesanan terisi otomatis.'],
     ['Konfirmasi & bayar', 'Kami konfirmasi total pesanan. Pesanan diproses setelah pembayaran.'],
     ['Terima pesanan', 'Pesanan disiapkan, lalu bisa diambil atau dikirim ke alamatmu.'],
@@ -83,7 +83,7 @@ export function Locations() {
         <div className="rounded-[28px] bg-cream p-8 shadow-[0_8px_30px_rgba(139,21,21,.08)]">
           <h3 className="font-display text-2xl font-semibold">Telkom University Surabaya</h3>
           <p className="mt-2 text-ink/75">Jl. Ketintang No.156, Gayungan, Surabaya, Jawa Timur 60231</p>
-          <p className="mt-6 font-semibold">Pesanan bisa diambil di lokasi atau diantar. Gratis ongkir untuk area Ketintang, di luar itu dikenakan biaya tambahan.</p>
+          <p className="mt-6 font-semibold">Pesanan bisa diambil di lokasi atau diantar. Gratis ongkir untuk pengantaran dalam radius 2 km, lebih dari itu dikenakan ongkir tambahan dengan minimal pembelian 7 pcs.</p>
           <a href="https://www.google.com/maps/search/?api=1&query=Telkom+University+Surabaya" target="_blank" rel="noreferrer" className="btn btn-outline mt-6 px-6 py-2.5">Buka di Maps</a>
         </div>
         <iframe title="Peta Telkom University Surabaya" src="https://www.google.com/maps?q=Telkom+University+Surabaya,+Jl.+Ketintang+No.156&output=embed" loading="lazy" className="h-72 w-full rounded-[28px] border-0 bg-blush/50 md:h-full md:min-h-[280px]" />
@@ -99,7 +99,7 @@ export function Contact() {
         <H2>Hubungi Kami</H2>
         <p className="mt-3 text-lg text-ink/75">Mau pre-order atau ada pertanyaan? Chat kami langsung.</p>
         <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-ink/60">Contact Person</p>
-        <p className="font-display text-2xl font-semibold text-ink">Andi</p>
+        <p className="font-display text-2xl font-semibold text-ink">Ashar</p>
         <p className="mt-2 flex items-center justify-center gap-3 font-display text-3xl font-semibold text-brand"><WhatsAppIcon className="h-9 w-9 text-[#25D366]" />{PHONE}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <a href={WA} target="_blank" rel="noreferrer" className="btn btn-primary gap-2 px-8 py-3.5 text-lg"><WhatsAppIcon className="h-6 w-6" />Chat WhatsApp</a>
